@@ -1,0 +1,57 @@
+kibot:
+  version: 1
+
+
+outputs:
+  # --- ASSETS FÜR README (Immer gleicher Name) ---
+  - name: 'README_3D'
+    type: render_3d
+    dir: 'assets'
+    options:
+      output_name: 'board_3d.png'
+      ray_tracing: true
+
+  - name: 'README_Schema'
+    type: svg_sch_print
+    dir: 'assets'
+    options:
+      output_name: 'schematic.svg'
+
+  # --- BUILD ORDNER (Für Archivierung/GitHub Artefakte) ---
+  - name: 'Build_3D'
+    type: render_3d
+    dir: 'build/images'
+    
+  - name: 'Build_Schema'
+    type: pdf_sch_print
+    dir: 'build/docs'
+
+  - name: 'Build_Layout'
+    type: pcb_print
+    dir: 'build/docs'
+
+# --- Stückliste (BOM) ---
+  - name: 'JLC_BOM'
+    type: bom
+    dir: 'build/fabrication'
+    options:
+      format: CSV
+      columns:
+        - field: Value
+          name: Comment
+        - field: Reference
+          name: Designator
+        - field: Footprint
+          name: Footprint
+        - field: 'LCSC'
+          name: 'LCSC Part #'
+
+  # --- Bestückungsdaten (POS) ---
+  - name: 'JLC_Position'
+    type: position
+    dir: 'build/fabrication'
+    options:
+      format: CSV
+      units: mm
+      separate_files_for_front_and_back: true
+      only_smd: true
