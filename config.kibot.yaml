@@ -1,45 +1,78 @@
 kibot:
   version: 1
-  filters:
-    - filter: W015
-    - filter: W143
-    - filter: W047
-    - filter: W098
+
+# WICHTIG: preflight ohne Unterstrich!
+preflight:
+  update_xml: true
+  # check_erc: false
+  # check_drc: false
 
 outputs:
-  # --- README 3D RENDER ---
+  # --- 1. GERBER & DRILL ---
+  - name: 'Gerbers'
+    type: gerber
+    dir: 'build/fabrication/gerber'
+    options:
+      exclude_edge_layer: true
+      exclude_pads_from_silkscreen: true
+      use_aux_axis_as_origin: false
+    layers:
+      - 'F.Cu'
+      - 'B.Cu'
+      - 'F.Paste'
+      - 'B.Paste'
+      - 'F.SilkS'
+      - 'B.SilkS'
+      - 'F.Mask'
+      - 'B.Mask'
+      - 'Edge.Cuts'
+
+  - name: 'Drill'
+    type: excellon
+    dir: 'build/fabrication/gerber'
+    options:
+      pth_and_npth_single_file: true
+      use_aux_axis_as_origin: false
+
+  # --- 2. STÜCKLISTE (BOM) ---
+  - name: 'BOM'
+    type: bom
+    dir: 'build/fabrication'
+    options:
+      format: CSV
+      columns:
+        - field: Reference
+          name: Designator
+        - field: Value
+          name: Comment
+        - field: Footprint
+          name: Footprint
+        - field: 'LCSC'
+          name: 'LCSC Part #'
+
+  # --- 3. BESTÜCKUNGSDATEN (CPL/POS) ---
+  - name: 'Position'
+    type: position
+    dir: 'build/fabrication'
+    options:
+      format: CSV
+      units: millimeters
+      separate_files_for_front_and_back: false
+      only_smd: true
+
+  # --- 4. DOKU FÜR GITHUB (README) ---
   - name: 'README_3D'
-    type: render_3d
+    type: blender_export
     dir: 'assets'
     options:
-      # WICHTIG: In render_3d heißt es 'output' (ohne _name)
       output: 'board_3d.png'
-      ray_tracing: true
-      # Perspektive und Qualität
+      ray_tracing: false
       zoom: 1.5
-      width: 1920
-      height: 1080
+      width: 1280
+      height: 720
 
-  # --- README SCHEMA ---
   - name: 'README_Schema'
     type: svg_sch_print
     dir: 'assets'
     options:
       output: 'schematic.svg'
-
-  # --- FABRICATION DATA ---
-  - name: 'JLC_BOM'
-    type: bom
-    dir: 'build/fabrication'
-    options:
-      format: CSV
-
-  - name: 'JLC_Position'
-    type: position
-    dir: 'build/fabrication'
-    options:
-      format: CSV
-      # FEHLERBEHEBUNG: Es muss voll ausgeschrieben werden
-      units: millimeters
-      separate_files_for_front_and_back: true
-      only_smd: true
