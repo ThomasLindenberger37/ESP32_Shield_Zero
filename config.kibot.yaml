@@ -1,5 +1,10 @@
 kibot:
   version: 1
+  filters:
+    - filter: W015
+    - filter: W143
+    - filter: W047
+    - filter: W098
 
 outputs:
   # --- README 3D RENDER ---
@@ -14,8 +19,6 @@ outputs:
       zoom: 1.5
       width: 1920
       height: 1080
-      # Hintergrund (weiß sieht im README meist besser aus)
-      background_color: '#FFFFFF'
 
   # --- README SCHEMA ---
   - name: 'README_Schema'
