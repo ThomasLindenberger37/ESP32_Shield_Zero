@@ -29,3 +29,5 @@ Generated/
 # --- Betriebssysteme ---
 .DS_Store
 Thumbs.db
+
+.xml
