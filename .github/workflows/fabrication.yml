@@ -9,19 +9,22 @@ on:
 jobs:
   kibot:
     runs-on: ubuntu-latest
-    container:
-      # Korrekter Name des Docker-Images
-      image: setsoft/kibot-automation:latest
     steps:
-      - name: Checkout
+      - name: Checkout info
         uses: actions/checkout@v4
 
       - name: Run KiBot
-        run: |
-          # Wir nutzen Platzhalter (*), damit der Dateiname egal ist
-          kibot -c config.kibot.yaml -b *.kicad_pcb -e *.kicad_sch
+        # Dies ist die offizielle Action von setsoft
+        uses: setsoft/kibot-action@v2
+        with:
+          # Wir erzwingen das 'full' Image für maximale Kompatibilität
+          image: setsoft/kicad8_auto:latest
+          config: config.kibot.yaml
+          board: dein_projektname.kicad_pcb
+          schema: dein_projektname.kicad_sch
 
       - name: Upload Fabrication Folder
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: Fabrication-Data-${{ github.ref_name }}
