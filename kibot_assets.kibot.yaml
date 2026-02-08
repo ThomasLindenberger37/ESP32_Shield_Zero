@@ -14,26 +14,14 @@ outputs:
       output: schematic.svg
 
   - name: README_3D
-    type: blender_export
+    type: render_3d
     dir: assets
     options:
-      camera:
-        name: cam1
-        type: perspective
-        pos_x: 0
-        pos_y: -140
-        pos_z: 90
-        clip_start: 1
-
-      light:
-        name: light1
-        type: SUN
-
-      render_options:
-        resolution_x: 1280
-        resolution_y: 720
-
-      default_file_id: board_3d
-
-      outputs:
-        - type: render
+      # Verhindert, dass der Job wegen fehlender 3D-Modelle abbricht
+      # (Die Warnungen bleiben, aber das Bild wird generiert)
+      # fatal_3d_error: false 
+      
+      output: board_3d.png
+      ray_tracing: true
+      width: 1920
+      height: 1080
