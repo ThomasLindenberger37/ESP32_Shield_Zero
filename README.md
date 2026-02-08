@@ -1,7 +1,7 @@
 # ESPhome Multisensor
 
 This project is a compact ESPhome-compatible multisensor. The PCB is designed so that all required components can be hand-soldered — no SMD reflow oven or pick-and-place machine is required only SMD soldering.
-The sheald is modular that it is proepared to be use for multiple purpuses. But the major use case would be a as a ESPHome sendor with multiple senspr values available:
+The shield is modular that it is proepared to be use for multiple purpuses. But the major use case would be a as a ESPHome sendor with multiple senspr values available:
 
 ## Features
 

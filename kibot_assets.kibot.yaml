@@ -17,10 +17,10 @@ outputs:
     type: render_3d
     dir: assets
     options:
-      # Verhindert, dass der Job wegen fehlender 3D-Modelle abbricht
-      # (Die Warnungen bleiben, aber das Bild wird generiert)
+      # Prevents the job from failing due to missing 3D models
+      # (Warnings remain, but the image is generated)
       # fatal_3d_error: false 
-      
+  
       output: board_3d.png
       ray_tracing: true
       width: 1920
