@@ -30,5 +30,5 @@ Generated/
 .DS_Store
 Thumbs.db
 
-.xml
+*.xml
 Gerber/
