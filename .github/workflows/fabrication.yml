@@ -9,19 +9,21 @@ on:
 jobs:
   kibot:
     runs-on: ubuntu-latest
+    # Wir nutzen das Image direkt von GitHubs eigener Registry
+    container:
+      image: ghcr.io/inti-cmnb/kicad9_auto_full:latest
     steps:
-      - name: Checkout info
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Run KiBot
-        # Dies ist die offizielle Action von setsoft
-        uses: setsoft/kibot-action@v2
-        with:
-          # Wir erzwingen das 'full' Image für maximale Kompatibilität
-          image: setsoft/kicad8_auto:latest
-          config: config.kibot.yaml
-          board: dein_projektname.kicad_pcb
-          schema: dein_projektname.kicad_sch
+        run: |
+          # Wir suchen die Dateien dynamisch, um Tippfehler zu vermeiden
+          BOARD_FILE=$(ls *.kicad_pcb | head -n 1)
+          SCHEME_FILE=$(ls *.kicad_sch | head -n 1)
+          
+          echo "Verarbeite Board: $BOARD_FILE"
+          kibot -c config.kibot.yaml -b "$BOARD_FILE" -e "$SCHEME_FILE"
 
       - name: Upload Fabrication Folder
         if: success()
