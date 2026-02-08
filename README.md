@@ -14,9 +14,9 @@ Quickstart:
 
 Images:
 
-![Top view](assets/ESP32_Sheald-3D_top.png)
+![Schematic](assets/schematic.svg)
 
-![Schematic](assets/ESP32_Sheald-schematic.svg)
+![Top view](assets/board_3d.png)
 
 Notes:
 - The BOM is available in the `build/fabrication/` folder.
