@@ -30,4 +30,4 @@ Images:
 ![Top view](assets/board_3d.png)
 
 Notes:
-- Gerber files available from the Actions. ![Download production data]()
+- Gerber files available from the Actions. [![Generate Fabrication Files](https://github.com/ThomasLindenberger37/ESP32_Sheald/actions/workflows/fabrication.yml/badge.svg)](https://github.com/ThomasLindenberger37/ESP32_Sheald/actions/workflows/fabrication.yml)
