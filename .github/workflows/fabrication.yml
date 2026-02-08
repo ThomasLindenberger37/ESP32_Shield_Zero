@@ -1,0 +1,31 @@
+name: Generate Fabrication Files
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  kibot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout info
+        uses: actions/checkout@v4
+
+      - name: Run KiBot
+        # Wir nutzen das offizielle Image. 'latest' unterstützt KiCad 8/9 meist am besten.
+        uses: INI-NExT/kibot-config@master
+        with:
+          # Pfad zu deiner .kibot.yaml Datei
+          config: config.kibot.yaml
+          # Pfad zu deiner .kicad_pcb Datei
+          board: dein_projektname.kicad_pcb
+          # Pfad zum Schaltplan (wichtig für die BoM)
+          schema: dein_projektname.kicad_sch
+
+      - name: Upload Fabrication Folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: Fabrication-Data
+          path: Fabrication/
