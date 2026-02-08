@@ -13,23 +13,19 @@ on:
 jobs:
   kibot:
     runs-on: ubuntu-latest
+    container:
+      # Hier nutzen wir das offizielle Image von KiBot (setsoft)
+      image: setsoft/kibot:latest
     steps:
-      - name: Checkout info
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Run KiBot
-        # Wir nutzen das offizielle Image. 'latest' unterstützt KiCad 8/9 meist am besten.
-        uses: INI-NExT/kibot-config@master
-        with:
-          # Pfad zu deiner .kibot.yaml Datei
-          config: config.kibot.yaml
-          # Pfad zu deiner .kicad_pcb Datei
-          board: dein_projektname.kicad_pcb
-          # Pfad zum Schaltplan (wichtig für die BoM)
-          schema: dein_projektname.kicad_sch
+        run: |
+          kibot -c config.kibot.yaml -b dein_projektname.kicad_pcb -e dein_projektname.kicad_sch
 
       - name: Upload Fabrication Folder
         uses: actions/upload-artifact@v4
         with:
-          name: Fabrication-Data
+          name: Fabrication-Data-${{ github.ref_name }}
           path: Fabrication/
