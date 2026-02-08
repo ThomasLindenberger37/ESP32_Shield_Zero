@@ -1,16 +1,25 @@
-ESPhome Multisensor
+# ESPhome Multisensor
 
-This project is a compact ESPhome-compatible multisensor. The PCB is designed so that all required components can be hand-soldered — no SMD reflow oven or pick-and-place machine is required.
+This project is a compact ESPhome-compatible multisensor. The PCB is designed so that all required components can be hand-soldered — no SMD reflow oven or pick-and-place machine is required only SMD soldering.
+The sheald is modular that it is proepared to be use for multiple purpuses. But the major use case would be a as a ESPHome sendor with multiple senspr values available:
 
-Quick facts:
-- **Type:** ESPhome Multisensor
-- **Feature:** Hand-solderable components only
-- **Use:** Environmental monitoring (temperature, humidity, pressure, motion — depending on populated sensors)
+## Features
 
-Quickstart:
-1. Populate the PCB by hand (all components are through-hole or hand-solderable).
-2. Configure the ESP32 with ESPhome and flash the firmware.
-3. Connect the device to Wi‑Fi and integrate the sensors into ESPhome/Home Assistant.
+- Measureing temperature and humidity with the onboard SHT40 I2C sensor
+- Measureing brightness with PT19-21C
+- Read human pressence with LD2410B mmWave sensor
+- Read Movement with PIR sensor SR602
+- 2x Onboard WS2812B LEDs For addressable color light
+- SolidState Relais TLP175A for poential free contact
+- Solder connetions for several sensor Modules like
+  - BME280 -> temperature and humidity and air pressure
+  - SCD40 -> CO2, temperature and humidity
+  - SHT40 -> temperature and humidity
+  - and many others
+- QWIIC connector if it is neessessary to connect someting that ist compatible with QWIIC
+
+The idear is to have one general perpuse PCB and only solder what is nessessary for the use case.
+For examle, if i want to use a SCD40 Sensor to measure the CO2 level in a room i dont want to have another sensor like SHT40 to measure temperature and humidity since the SCD40 alreadx provides this data
 
 Images:
 
@@ -19,5 +28,4 @@ Images:
 ![Top view](assets/board_3d.png)
 
 Notes:
-- The BOM is available in the `build/fabrication/` folder.
-- If you need help with soldering or ESPhome configuration, feel free to ask.
+  - Gerber available form the actions ![Download production data]()
