@@ -63,6 +63,8 @@ outputs:
       files:
         - from_output: JLCPCB_gerbers
           dest: /
+        - from_output: JLCPCB_drill
+          dest: /
 
   - name: JLCPCB_position
     comment: Pick and place position file compatible with JLCPCB
@@ -116,20 +118,20 @@ outputs:
     options:
       layer_view: 'B'
 
-  # # --- 6. README SCHEMATIC ---
-  # - name: 'README_Schema'
-  #   type: svg_sch_print
-  #   dir: 'assets'
-  #   options:
-  #     output: 'schematic.svg'
+  # --- 6. README SCHEMATIC ---
+  - name: 'README_Schema'
+    type: svg_sch_print
+    dir: 'assets'
+    options:
+      output: 'schematic.svg'
 
-  # # --- 7. 3D RENDER (Ganz am Ende, da fehleranfällig) ---
-  # - name: 'README_3D'
-  #   type: blender_export
-  #   dir: 'assets'
-  #   options:
-  #     output: 'board_3d.png'
-  #     ray_tracing: false
-  #     zoom: 1.5
-  #     width: 1280
-  #     height: 720
+  # --- 7. 3D RENDER (Ganz am Ende, da fehleranfällig) ---
+  - name: 'README_3D'
+    type: blender_export
+    dir: 'assets'
+    options:
+      output: 'board_3d.png'
+      ray_tracing: false
+      zoom: 1.5
+      width: 1280
+      height: 720
