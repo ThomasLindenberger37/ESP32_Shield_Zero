@@ -2,27 +2,24 @@ name: Generate Fabrication Files
 
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: [ main, develop ]
   pull_request:
-    branches:
-      - main
-      - develop
+    branches: [ main, develop ]
 
 jobs:
   kibot:
     runs-on: ubuntu-latest
     container:
-      # Hier nutzen wir das offizielle Image von KiBot (setsoft)
-      image: setsoft/kibot:latest
+      # Korrekter Name des Docker-Images
+      image: setsoft/kibot-automation:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Run KiBot
         run: |
-          kibot -c config.kibot.yaml -b dein_projektname.kicad_pcb -e dein_projektname.kicad_sch
+          # Wir nutzen Platzhalter (*), damit der Dateiname egal ist
+          kibot -c config.kibot.yaml -b *.kicad_pcb -e *.kicad_sch
 
       - name: Upload Fabrication Folder
         uses: actions/upload-artifact@v4
