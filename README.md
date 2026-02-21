@@ -22,11 +22,80 @@ The idea is to have one general-purpose PCB and only populate the components nec
 
 For example, if you want to use a SCD40 sensor to measure the CO2 level in a room, you don't need the onboard SHT40 sensor since the SCD40 already provides temperature and humidity data.
 
-Images:
+## Images
 
 ![Schematic](assets/schematic.svg)
 
 ![Top view](assets/board_3d.png)
+
+## KiBOT Export
+
+This project uses KiBOT to automatically generate fabrication files and assets from the KiCAD project.
+
+### Installation
+
+KiBOT is containerized using Docker for easy installation and reproducibility. Make sure you have Docker installed on your system.
+
+### Usage
+
+#### Production Files (Gerber Data)
+
+To generate the fabrication files including Gerber data, drill files, and bill of materials:
+
+```bash
+docker run --rm \
+    -v "$(pwd):/home/kicad/project" \
+    -u $(id -u):$(id -g) \
+    -w /home/kicad/project \
+    --env "HOME=/tmp" \
+    ghcr.io/inti-cmnb/kicad9_auto_full:latest \
+    kibot -c config.kibot.yaml
+```
+
+This command uses the `config.kibot.yaml` configuration file to generate production-ready files for PCB manufacturing, including Gerber files, drill data, and component placement information.
+
+#### Assets (Images for Documentation)
+
+To generate the images used in this README (schematics, 3D board views, etc.):
+
+```bash
+docker run --rm \
+    -v "$(pwd):/home/kicad/project" \
+    -u $(id -u):$(id -g) \
+    -w /home/kicad/project \
+    --env "HOME=/tmp" \
+    ghcr.io/inti-cmnb/kicad9_auto_full:latest \
+    kibot -c kibot_assets.kibot.yaml
+```
+
+This command uses the `kibot_assets.kibot.yaml` configuration file to generate documentation images and assets.
+
+### Configuration Files
+
+- **config.kibot.yaml** - Configuration for production manufacturing files (Gerber, drill files, BoM, etc.)
+- **kibot_assets.kibot.yaml** - Configuration for generating documentation images and assets
+
+### Workflow
+
+#### Assets Generation (Pre-Commit Hook)
+
+The asset generation should be performed before each commit to ensure that documentation images in the README are always up-to-date with the latest design changes. This is best implemented as a pre-commit hook:
+
+1. The pre-commit hook automatically runs the asset generation command before each commit
+2. If the KiCAD project has been modified, new images are generated
+3. These updated assets are included in the commit
+
+This ensures that the schematic and board images in the documentation always reflect the current PCB design.
+
+#### Production Files (CI/CD Pipeline)
+
+Production manufacturing files are generated automatically through a GitHub Actions pipeline whenever changes are pushed to the repository:
+
+- The pipeline runs the `config.kibot.yaml` configuration
+- Gerber files, drill data, and other manufacturing files are generated
+- These files are available as build artifacts for download from the Actions tab
+
+This automated approach ensures that fabrication files are always available and generated consistently.
 
 Notes:
 - Gerber files available from the Actions. [![Generate Fabrication Files](https://github.com/ThomasLindenberger37/ESP32_Sheald/actions/workflows/fabrication.yml/badge.svg)](https://github.com/ThomasLindenberger37/ESP32_Sheald/actions/workflows/fabrication.yml)
