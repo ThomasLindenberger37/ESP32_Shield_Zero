@@ -3226,7 +3226,7 @@
 	)
 	(rectangle
 		(start 179.07 127)
-		(end 248.92 158.75)
+		(end 284.48 158.75)
 		(stroke
 			(width 0)
 			(type default)
@@ -4908,6 +4908,50 @@
 			)
 		)
 	)
+	(global_label "UART_TX_mmWAVE"
+		(shape input)
+		(at 260.35 142.24 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6001c9d4-ff6b-49ad-a352-c65fe909ce40")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 240.4316 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "UART_RX_mmWAVE"
+		(shape input)
+		(at 260.35 144.78 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "64155064-86f0-486a-a6ff-eca8412f9bd5")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 240.1292 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "WS12_LED_IN"
 		(shape input)
 		(at 52.07 138.43 180)
@@ -6269,6 +6313,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 260.35 147.32 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "161cac39-9b86-428e-b127-4ccf4f955dbf")
+		(property "Reference" "#PWR041"
+			(at 260.35 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 260.35 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 260.35 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 260.35 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 260.35 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bb0ad33e-1409-45c7-8d3b-31d535896d7e")
+		)
+		(instances
+			(project "ESP32_Shield"
+				(path "/8aac3481-571f-4367-bd23-185f621364a9"
+					(reference "#PWR041")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 67.31 36.83 0)
 		(mirror x)
@@ -6404,6 +6514,96 @@
 			(project "ESP32_Sheald"
 				(path "/8aac3481-571f-4367-bd23-185f621364a9"
 					(reference "J11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "PCM_SparkFun-Connector:Qwiic_Vertical")
+		(at 265.43 142.24 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1e5d11d1-d81a-4cc5-b32d-bd02c388b75d")
+		(property "Reference" "J15"
+			(at 274.32 142.2399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "mmWave Connector"
+			(at 266.192 150.622 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "PCM_SparkFun-Connector:JST_1x04_P1.0mm_Vertical_SMD"
+			(at 265.43 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.jst-mfg.com/product/pdf/eng/eSH.pdf"
+			(at 265.43 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "4 pin JST 1mm polarized connector for I2C"
+			(at 265.43 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "PROD_ID" "CONN-14483"
+			(at 265.43 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "6c3b396c-ee77-425b-9b0a-67ca592cb4e8")
+		)
+		(pin "3"
+			(uuid "cf24ca52-18f6-4148-b327-793331ff4d49")
+		)
+		(pin "NC2"
+			(uuid "0453f5e5-fd1d-429c-8094-97747e69c0d9")
+		)
+		(pin "NC1"
+			(uuid "bb36fa72-40bd-4baf-82f7-d1ce37154564")
+		)
+		(pin "1"
+			(uuid "5fe73c54-4205-4408-bc99-332c64d0a61e")
+		)
+		(pin "4"
+			(uuid "4f3a7076-ed59-401b-bb56-75d45197fb21")
+		)
+		(instances
+			(project "ESP32_Shield"
+				(path "/8aac3481-571f-4367-bd23-185f621364a9"
+					(reference "J15")
 					(unit 1)
 				)
 			)
@@ -10635,6 +10835,72 @@
 			(project "ESP32_Sheald"
 				(path "/8aac3481-571f-4367-bd23-185f621364a9"
 					(reference "#PWR016")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 260.35 139.7 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "eb3b44d5-b683-4249-81a7-a307f0e188ae")
+		(property "Reference" "#PWR042"
+			(at 260.35 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 260.35 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 260.35 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 260.35 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 260.35 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5031c6eb-fad9-48c2-96bb-65888ebc7a25")
+		)
+		(instances
+			(project "ESP32_Shield"
+				(path "/8aac3481-571f-4367-bd23-185f621364a9"
+					(reference "#PWR042")
 					(unit 1)
 				)
 			)
