@@ -9,7 +9,7 @@ on:
 jobs:
   kibot:
     runs-on: ubuntu-latest
-    # Wir nutzen das Image direkt von GitHubs eigener Registry
+    # We use the image directly from GitHub's own registry
     container:
       image: ghcr.io/inti-cmnb/kicad9_auto_full:latest
     steps:
@@ -18,11 +18,11 @@ jobs:
 
       - name: Run KiBot
         run: |
-          # Wir suchen die Dateien dynamisch, um Tippfehler zu vermeiden
+          # We search for files dynamically to avoid typos
           BOARD_FILE=$(ls *.kicad_pcb | head -n 1)
           SCHEME_FILE=$(ls *.kicad_sch | head -n 1)
           
-          echo "Verarbeite Board: $BOARD_FILE"
+          echo "Processing board: $BOARD_FILE"
           kibot -c config.kibot.yaml -b "$BOARD_FILE" -e "$SCHEME_FILE"
 
       - name: Upload Fabrication Folder
