@@ -1,6 +1,6 @@
-# ESPhome Multisensor
+# ESPhome Shield Zero
 
-This project is a compact ESPhome-compatible multisensor shield. The PCB is designed so that all required components can be hand-soldered—no SMD reflow oven or pick-and-place machine is required.
+This project is a compact ESPhome compatible multisensor shield. The PCB is designed so that all required components can be hand-soldered—no SMD reflow oven or pick-and-place machine is required.
 We want to eather use SMD componets that can be solderd by hand with a soldering iron or we want to use modules where the SMD sensors are presolderd. This makes it cheap but easy customizable.
 
 The shield is modular and prepared for multiple purposes. The primary use case is as an ESPHome sensor with multiple sensor values available.
