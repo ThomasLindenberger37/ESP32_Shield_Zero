@@ -6,15 +6,14 @@ The shield is modular and prepared for multiple purposes. The primary use case i
 
 ## Features
 
-- Measuring temperature and humidity with the onboard SHT40 I2C sensor
-- Measuring brightness with PT19-21C
 - Detecting human presence with LD2410B mmWave sensor
 - Detecting motion with PIR sensor SR602
-- 2x Onboard WS2812B LEDs For addressable color light
-- SolidState Relais TLP175A for poential free contact
+- Measuring brightness with PT19-21C
+- 2x Onboard WS2812B LEDs for addressable color light
+- SolidState Relais TLP175A for potential free contact
 - Solder connections for several sensor modules like
-  - BME280 -> temperature and humidity and air pressure
-  - SCD40 -> CO2, temperature and humidity
+  - BME280 -> temperature, humidity and air pressure 
+  - SCD40 -> CO₂, temperature and humidity
   - SHT40 -> temperature and humidity
   - and many others
 - QWIIC connector for connecting additional QWIIC-compatible modules if needed
