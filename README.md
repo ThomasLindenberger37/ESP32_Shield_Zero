@@ -1,8 +1,9 @@
 # ESPhome Multisensor
 
 This project is a compact ESPhome-compatible multisensor shield. The PCB is designed so that all required components can be hand-soldered—no SMD reflow oven or pick-and-place machine is required.
+We want to eather use SMD componets that can be solderd by hand with a soldering iron or we want to use modules where the SMD sensors are presolderd. This makes it cheap but easy customizable.
 
-The shield is modular and prepared for multiple purposes. The primary use case is as an ESPHome sensor with multiple sensor values available:
+The shield is modular and prepared for multiple purposes. The primary use case is as an ESPHome sensor with multiple sensor values available.
 
 ## Features
 
@@ -12,7 +13,7 @@ The shield is modular and prepared for multiple purposes. The primary use case i
 - 2x Onboard WS2812B LEDs for addressable color light
 - SolidState Relais TLP175A for potential free contact
 - Solder connections for several sensor modules like
-  - BME280 -> temperature, humidity and air pressure 
+  - BME280 -> temperature, humidity and air pressure
   - SCD40 -> CO₂, temperature and humidity
   - SHT40 -> temperature and humidity
   - and many others
@@ -20,7 +21,7 @@ The shield is modular and prepared for multiple purposes. The primary use case i
 
 The idea is to have one general-purpose PCB and only populate the components necessary for your use case.
 
-For example, if you want to use a SCD40 sensor to measure the CO2 level in a room, you don't need the onboard SHT40 sensor since the SCD40 already provides temperature and humidity data.
+For example, if you want to use a SCD40 sensor to measure the CO2 level in a room, you don't a SHT40 sensor since the SCD40 already provides temperature and humidity data.
 
 ## Images
 
