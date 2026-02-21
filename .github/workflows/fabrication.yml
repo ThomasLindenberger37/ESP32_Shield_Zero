@@ -29,5 +29,5 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Fabrication-Data-${{ replace(github.ref_name, '/', '-') }}
+          name: Fabrication-Data-${{ github.head_ref || github.ref_name }}
           path: Fabrication/
