@@ -25,9 +25,22 @@ jobs:
           echo "Processing board: $BOARD_FILE"
           kibot -c config.kibot.yaml -b "$BOARD_FILE" -e "$SCHEME_FILE"
 
+      - name: Set artifact name
+        id: artifact_name
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          REF_NAME: ${{ github.ref_name }}
+          REF: ${{ github.ref }}
+        run: |
+          # Use head_ref for PRs, otherwise ref_name, fallback to ref
+          BRANCH="${HEAD_REF:-${REF_NAME:-${REF}}}"
+          # Replace slashes with dashes for artifact name safety (compatible with sh)
+          SAFE_BRANCH=$(echo "$BRANCH" | sed 's|/|-|g')
+          echo "name=Fabrication-Data-${SAFE_BRANCH}" >> "$GITHUB_OUTPUT"
+
       - name: Upload Fabrication Folder
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Fabrication-Data-${{ github.head_ref || github.ref_name }}
+          name: ${{ steps.artifact_name.outputs.name }}
           path: Fabrication/
